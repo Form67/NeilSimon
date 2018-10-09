@@ -2,10 +2,11 @@
 <html lang="en"> 
 <head> 
 	<meta charset="UTF-8" />
-    <title>Learning Phaser</title>
+    <title>NeilSimon</title>
 	<script type="text/javascript" src="js/phaser.min.js"></script>
 	<script type="text/javascript" src="js/preload.js"></script>
 	<script type="text/javascript" src="js/gameplay.js"></script>
+	<script type="text/javascript" src="js/telescope.js"></script>
     <style type="text/css">
         body {
             margin: 0;
@@ -16,9 +17,10 @@
 
 <script type="text/javascript">
 
-	let game = new Phaser.Game(800, 600, Phaser.AUTO);
+	let game = new Phaser.Game(2436, 1125, Phaser.AUTO);
 	game.state.add("Preload",preloadState);
 	game.state.add("Gameplay", gameplayState);
+	game.state.add("Telescope", telescopeState)
 	game.state.start("Preload");
 
 	
