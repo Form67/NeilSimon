@@ -9,9 +9,11 @@ preloadState.prototype.preload = function(){
 	game.load.spritesheet("murph","assets/character.png",32,48);
 	game.load.image("telescope", "assets/TelescopeOverlay.png");
 	game.load.image("building", "assets/BuildingTest.png");
+	game.load.image("Paper", "assets/Paper.png");
+	game.load.image("test", "assests/test.png");
 };
 preloadState.prototype.create = function(){
-	game.state.start("Telescope");
+	game.state.start("Radio");
 };
 preloadState.prototype.update = function(){
 
