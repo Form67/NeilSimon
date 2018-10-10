@@ -15,6 +15,9 @@ telescopeState.prototype.update = function(){
 	if (game.input.mousePointer.isDown){
 		this.telescope.x = game.input.x;
 		this.telescope.y = game.input.y;
+		if (this.telescope.y>1827){
+			this.telescope.y = 1827;
+		}
 		
 	}
 	else{
