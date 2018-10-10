@@ -17,10 +17,10 @@
 
 <script type="text/javascript">
 
-	let game = new Phaser.Game(2436, 1125, Phaser.AUTO);
+	let game = new Phaser.Game(1125, 2436, Phaser.AUTO);
 	game.state.add("Preload",preloadState);
 	game.state.add("Gameplay", gameplayState);
-	game.state.add("Telescope", telescopeState)
+	game.state.add("Telescope", telescopeState);
 	game.state.start("Preload");
 
 	
