@@ -9,7 +9,9 @@ preloadState.prototype.preload = function(){
 	game.load.spritesheet("murph","assets/character.png",32,48);
 	game.load.image("telescope", "assets/TelescopeOverlay.png");
 	game.load.image("building", "assets/BuildingTest.png");
-	game.load.image("block", "assets/32red.png");
+	game.load.image("part", "assets/32red.png");
+	game.load.image("goal", "assets/32green.png");
+	
 };
 preloadState.prototype.create = function(){
 	game.state.start("Gunplay");
