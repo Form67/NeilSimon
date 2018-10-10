@@ -10,7 +10,8 @@ preloadState.prototype.preload = function(){
 	game.load.image("telescope", "assets/TelescopeOverlay.png");
 	game.load.image("building", "assets/BuildingTest.png");
 	game.load.image("Paper", "assets/Paper.png");
-	game.load.image("test", "assests/test.png");
+	game.load.image("test", "assets/test.png");
+	game.load.bitmapFont("carrier_command", "assets/carrier_command.png", "assets/carrier_command.xml");
 };
 preloadState.prototype.create = function(){
 	game.state.start("Radio");
