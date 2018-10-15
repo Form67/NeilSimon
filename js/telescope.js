@@ -3,6 +3,7 @@ let telescopeState  =function() {
 	this.gameActive = false;
 	this.gameTimer = 1;
 };
+
 telescopeState.prototype.create = function(){
 	this.gameActive = false;
 	this.gameProgress = 0;
@@ -17,6 +18,7 @@ telescopeState.prototype.create = function(){
 	this.Rcurtain = game.add.sprite(0,0,"RCurtain");
 	game.physics.enable(this.Rcurtain, Phaser.Physics.ARCADE);
 };
+
 
 telescopeState.prototype.update = function(){
 	if(this.gameActive){
@@ -33,8 +35,6 @@ telescopeState.prototype.update = function(){
 				this.telescope.y = 1827;
 			}
 			console.log(this.telescope.x + "" + this.telescope.y);
-
-			
 		}
 		if(gameTimer <= 0){
 			this.gameActive = false;
