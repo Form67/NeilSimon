@@ -1,21 +1,19 @@
 let radioState =function() {
-
+	this.score = 0;
 };
 radioState.prototype.create = function() {
 	game.add.sprite(0,0, "Paper");
 	
-	this.sprite = game.add.sprite(200,200, 'test');
-	this.sprite.inputEnabled = true;
-	this.sprite.input.enableDrag();
+	this.prompt = game.add.bitmapText(100,100, 'Typewriter', 'This is not a drill I can\'t read');
 
-	let style = { font: "72px Arial", fill: "#ff0044", wordWrape: true, wordWrapWidth: this.sprite.width, align: "center", backgroundColor: "#ffff00" };
 
-	this.text1 = new Text(radioState, 1000, 1000, "this is a test", style);
-	//text1.anchor.set(0.5, 0.5);
-	//let text2 = new Text(radioState, 10, 10, "this is a test2", 'bold 30pt Arial', 'blue');
+	this.answer1 = game.add.bitmapText(200,200, 'Typewriter', 'Test', 72);
+	this.answer1.inputEnabled = true;
+	this.answer1.input.enableDrag();
+
 };
 
 radioState.prototype.update = function() {
-	this.text1.x = Math.floor(this.sprite.x + this.sprite.width/2);
-	this.text1.y = Math.floor(this.sprite.y + this.sprite.height / 2);
+	//this.text1.x = Math.floor(this.sprite.x + this.sprite.width/2);
+	//this.text1.y = Math.floor(this.sprite.y + this.sprite.height / 2);
 }

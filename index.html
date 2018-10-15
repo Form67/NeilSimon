@@ -22,9 +22,9 @@
 	let game = new Phaser.Game(1125, 2436, Phaser.AUTO);
 	game.state.add("Preload",preloadState);
 	game.state.add("Gameplay", gameplayState);
-	game.state.add("Telescope", telescopeState);
-	game.state.add("Gunplay", gunplayState);
+	game.state.add("Telescope", telescopeState)
 	game.state.add("Radio", radioState);
+
 	game.state.start("Preload");
 
 	
@@ -33,3 +33,6 @@
 
 </body>
 </html>
+	game.state.add("Telescope", telescopeState);
+	game.state.add("Gunplay", gunplayState);
+	game.state.add("Radio", radioState);
