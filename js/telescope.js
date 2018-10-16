@@ -1,7 +1,7 @@
 let telescopeState  =function() {
 	this.gameProgress = 0;
 	this.gameActive = false;
-	this.gameTimer = 1;
+	this.gameTimer = 2.7;
 };
 
 telescopeState.prototype.create = function(){
@@ -22,11 +22,11 @@ telescopeState.prototype.create = function(){
 
 telescopeState.prototype.update = function(){
 	if(this.gameActive){
-		if(this.telescope.x >= 450 && this.telescope.x<=600 && this.telescope.y >= 450 && this.telescope.y <= 600){
+		if(this.telescope.x >= 400 && this.telescope.x<=700 && this.telescope.y >= 400 && this.telescope.y <= 700){
 			gameTimer -= game.time.physicsElapsed;
 		}
 		else{
-			gameTimer = 3;
+			gameTimer = 2.7;
 		}
 		if (game.input.mousePointer.isDown){
 			this.telescope.x = game.input.x;
