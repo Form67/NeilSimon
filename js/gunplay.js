@@ -2,101 +2,140 @@ let gunplayState = function(){
 	this.score = 0;
 };
 
-let part1;
-let part2;
-let part3;
-let part4;
-let part5;
-let part6;
-let partGoal1 = new Phaser.Point(400, 400);
-let partGoal2 = new Phaser.Point(432, 400);
-let partGoal3 = new Phaser.Point(464, 400);
-let partGoal4 = new Phaser.Point(400, 432);
-let partGoal5 = new Phaser.Point(432, 432);
-let partGoal6 = new Phaser.Point(464, 432);
-let snapped1 = false;
-let snapped2 = false;
-let snapped3 = false;
-let snapped4 = false;
-let snapped5 = false;
-let snapped6 = false;
+let gun;			// 563x97
+let gunShadow;// 563x97
+let stock;		// 145x74
+let stock2;		// 275x31
+let barrel;		// 82x29
+let sight;		// 258x18
+let trigger;	// 121x19
+let guard;		// 59x17	
+let draggedPart;
+
+let stockGoal = new Phaser.Point(357, 1228);
+let stock2Goal = new Phaser.Point(568, 1199);
+let barrelGoal = new Phaser.Point(803, 1187);
+let sightGoal = new Phaser.Point(571, 1175);
+let triggerGoal = new Phaser.Point(501, 1221);
+let guardGoal = new Phaser.Point(739, 1193);			
+
+let intro = true;
+let dragging = false;
 
 gunplayState.prototype.create = function(){
+	game.physics.startSystem(Phaser.Physics.ARCADE);
 	
-	// top left part
-	game.add.sprite(384, 384, "goal");
+	// gun
+	gun = game.add.sprite(game.world.centerX - 280, game.world.centerY - 48, "gun");
+	game.physics.arcade.enable(gun);
+	gun.body.gravity.y = 250;
 	
-
-	
-	part1 = game.add.sprite(game.world.centerX - 100, game.world.centerY - 100, 'part1');
-	part1.inputEnabled = true;
-	part1.anchor.x = 0.5;
-	part1.anchor.y = 0.5;
-	
-	part2 = game.add.sprite(game.world.centerX , game.world.centerY - 100, 'part2');
-	part2.inputEnabled = true;
-	part2.anchor.x = 0.5;
-	part2.anchor.y = 0.5;
-	
-	part3 = game.add.sprite(game.world.centerX + 100, game.world.centerY - 100, 'part3');
-	part3.inputEnabled = true;
-	part3.anchor.x = 0.5;
-	part3.anchor.y = 0.5;
-	
-	part4 = game.add.sprite(game.world.centerX - 100, game.world.centerY, 'part4');
-	part4.inputEnabled = true;
-	part4.anchor.x = 0.5;
-	part4.anchor.y = 0.5;
-	
-	part5 = game.add.sprite(game.world.centerX, game.world.centerY, 'part5');
-	part5.inputEnabled = true;
-	part5.anchor.x = 0.5;
-	part5.anchor.y = 0.5;
-	
-	part6 = game.add.sprite(game.world.centerX + 100, game.world.centerY, 'part6');
-	part6.inputEnabled = true;
-	part6.anchor.x = 0.5;
-	part6.anchor.y = 0.5;
-
 };
 gunplayState.prototype.update = function(){
-	movePart(part1, snapped1);
-	movePart(part2, snapped2);
-	movePart(part3, snapped3);
-	movePart(part4, snapped4);
-	movePart(part5, snapped5);
-	movePart(part6, snapped6);
 	
-	snapPart(part1, partGoal1, snapped1);
-	snapPart(part2, partGoal2, snapped2);
-	snapPart(part3, partGoal3, snapped3);
-	snapPart(part4, partGoal4, snapped4);
-	snapPart(part5, partGoal5, snapped5);
-	snapPart(part6, partGoal6, snapped6);
-	
-	if(snapped1 && snapped2 && snapped3 && snapped4 && snapped5 && snapped6){
-		console.log(" YOU WIN ");
+	if(intro){
+		if(gun.y >= game.world.height - 400){
+			gun.kill();
+			this.spawnParts();
+			intro = false;
+		}
 	}
-	
+	else{
+		if(!game.input.activePointer.leftButton.isDown){
+			dragging = false;
+		}
+		else if(game.input.activePointer.leftButton.isDown && dragging){
+			if(!draggedPart.snapped){
+				draggedPart.x = game.input.x;
+				draggedPart.y = game.input.y;
+			}
+		}
+		if(!dragging){
+			this.movePart(stock);
+			this.movePart(stock2);
+			this.movePart(barrel);
+			this.movePart(sight);
+			this.movePart(trigger);
+			this.movePart(guard);
+		}
+		
+		this.snapPart(stock, stockGoal);
+		this.snapPart(stock2, stock2Goal);
+		this.snapPart(barrel, barrelGoal);
+		this.snapPart(sight, sightGoal);
+		this.snapPart(trigger, triggerGoal);
+		this.snapPart(guard, guardGoal);
+		
+		
+		if(stock.snapped && stock2.snapped && barrel.snapped && sight.snapped && trigger.snapped && guard.snapped){
+			//console.log(" YOU WIN ");
+		}
+	}
 };
 
-gunplayState.prototype.movePart = function(part, snapped){
+gunplayState.prototype.movePart = function(part){
 	if(game.input.x <= (part.x + part.width/2) && game.input.x >= (part.x - part.width/2) &&
 	 game.input.y <= (part.y + part.height/2) && game.input.y >= (part.y - part.height/2) && 
-	 game.input.activePointer.leftButton.isDown && !snapped){
+	 game.input.activePointer.leftButton.isDown && !part.snapped){
 		console.log("x: " + part.x);
 		console.log("y: " + part.y);
 		part.x = game.input.x;
 		part.y = game.input.y;
+		dragging = true;
+		draggedPart = part;
 	}
 }
 
-gunplayState.prototype.snapPart = function(part, partGoal, snapped){
-	if(!snapped && part.x <= partGoal.x +part.width/2 && part.x >= partGoal.x -part.width/2 &&
+gunplayState.prototype.snapPart = function(part, partGoal){
+	if(!part.snapped && part.x <= partGoal.x +part.width/2 && part.x >= partGoal.x -part.width/2 &&
    part.y <= partGoal.y +part.height/2 && part.y >= partGoal.y -part.height/2){
 		part.x = partGoal.x;
 		part.y = partGoal.y;
-		snapped = true;
+		part.snapped = true;
 		console.log("snapped");
 	}
+}
+
+gunplayState.prototype.spawnParts = function(){
+	
+	gunShadow = game.add.sprite(game.world.centerX - 280, game.world.centerY - 48, "goal");
+
+	
+	stock = game.add.sprite(game.world.centerX + 400, game.world.height - 300, 'stock');
+	stock.inputEnabled = true;
+	stock.anchor.x = 0.5;
+	stock.anchor.y = 0.5;
+	stock.snapped = false;
+	
+	stock2 = game.add.sprite(game.world.centerX , game.world.height - 300, 'stock2');
+	stock2.inputEnabled = true;
+	stock2.anchor.x = 0.5;
+	stock2.anchor.y = 0.5;
+	stock2.snapped = false;
+
+	
+	barrel = game.add.sprite(game.world.centerX - 100, game.world.height - 300, 'barrel');
+	barrel.inputEnabled = true;
+	barrel.anchor.x = 0.5;
+	barrel.anchor.y = 0.5;
+	barrel.snapped = false;
+	
+	sight = game.add.sprite(game.world.centerX - 500, game.world.height - 300, 'sight');
+	sight.inputEnabled = true;
+	sight.anchor.x = 0.5;
+	sight.anchor.y = 0.5;
+	sight.snapped = false;
+	
+	trigger = game.add.sprite(game.world.centerX + 500, game.world.height - 300, 'trigger');
+	trigger.inputEnabled = true;
+	trigger.anchor.x = 0.5;
+	trigger.anchor.y = 0.5;
+	trigger.snapped = false;
+	
+	guard = game.add.sprite(game.world.centerX + 500, game.world.height - 300, 'guard');
+	guard.inputEnabled = true;
+	guard.anchor.x = 0.5;
+	guard.anchor.y = 0.5;
+	guard.snapped = false;
+	
 }
