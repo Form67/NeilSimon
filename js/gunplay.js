@@ -76,7 +76,7 @@ gunplayState.prototype.update = function(){
 gunplayState.prototype.movePart = function(part){
 	if(game.input.x <= (part.x + part.width/2) && game.input.x >= (part.x - part.width/2) &&
 	 game.input.y <= (part.y + part.height/2) && game.input.y >= (part.y - part.height/2) && 
-	 game.input.activePointer.leftButton.isDown && !part.snapped){
+	 game.input.y <= 1827 && game.input.activePointer.leftButton.isDown && !part.snapped){
 		console.log("x: " + part.x);
 		console.log("y: " + part.y);
 		part.x = game.input.x;
@@ -101,38 +101,38 @@ gunplayState.prototype.spawnParts = function(){
 	gunShadow = game.add.sprite(game.world.centerX - 280, game.world.centerY - 48, "goal");
 
 	
-	stock = game.add.sprite(game.world.centerX + 400, game.world.height - 300, 'stock');
+	stock = game.add.sprite(game.world.centerX + 400, 1827, 'stock');
 	stock.inputEnabled = true;
 	stock.anchor.x = 0.5;
 	stock.anchor.y = 0.5;
 	stock.snapped = false;
 	
-	stock2 = game.add.sprite(game.world.centerX , game.world.height - 300, 'stock2');
+	stock2 = game.add.sprite(game.world.centerX , 1827, 'stock2');
 	stock2.inputEnabled = true;
 	stock2.anchor.x = 0.5;
 	stock2.anchor.y = 0.5;
 	stock2.snapped = false;
 
 	
-	barrel = game.add.sprite(game.world.centerX - 100, game.world.height - 300, 'barrel');
+	barrel = game.add.sprite(game.world.centerX - 100, 1827, 'barrel');
 	barrel.inputEnabled = true;
 	barrel.anchor.x = 0.5;
 	barrel.anchor.y = 0.5;
 	barrel.snapped = false;
 	
-	sight = game.add.sprite(game.world.centerX - 500, game.world.height - 300, 'sight');
+	sight = game.add.sprite(game.world.centerX - 500, 1827, 'sight');
 	sight.inputEnabled = true;
 	sight.anchor.x = 0.5;
 	sight.anchor.y = 0.5;
 	sight.snapped = false;
 	
-	trigger = game.add.sprite(game.world.centerX + 500, game.world.height - 300, 'trigger');
+	trigger = game.add.sprite(game.world.centerX + 500, 1827, 'trigger');
 	trigger.inputEnabled = true;
 	trigger.anchor.x = 0.5;
 	trigger.anchor.y = 0.5;
 	trigger.snapped = false;
 	
-	guard = game.add.sprite(game.world.centerX + 500, game.world.height - 300, 'guard');
+	guard = game.add.sprite(game.world.centerX - 400, 1827, 'guard');
 	guard.inputEnabled = true;
 	guard.anchor.x = 0.5;
 	guard.anchor.y = 0.5;
