@@ -34,7 +34,7 @@ gunplayState.prototype.create = function(){
 gunplayState.prototype.update = function(){
 	
 	if(intro){
-		if(gun.y >= game.world.height - 400){
+		if(gun.y >= 1827){
 			gun.kill();
 			this.spawnParts();
 			intro = false;
