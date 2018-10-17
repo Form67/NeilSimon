@@ -14,6 +14,9 @@ let trigger;	// 121x19
 let guard;		// 59x17	
 let draggedPart;
 let bg;
+let snapFx;
+let breakFx;
+let dragFx;
 
 let stockGoal = new Phaser.Point(357, 780);
 let stock2Goal = new Phaser.Point(566, 755);
@@ -40,6 +43,10 @@ gunplayState.prototype.create = function(){
 	this.Rcurtain = game.add.sprite(0,0,"RCurtain");
 	game.physics.enable(this.Rcurtain, Phaser.Physics.ARCADE);
 	this.audienceFloor = game.add.sprite(0,0,"audienceFloor")
+	
+	snapFx = game.add.audio("gunSnap");
+	breakFx = game.add.audio("gunBreak");
+	dragFx = game.add.audio("gunDrag");
 };
 gunplayState.prototype.update = function(){
 	
@@ -49,6 +56,7 @@ gunplayState.prototype.update = function(){
 			gun.kill();
 			this.spawnParts();
 			intro = false;
+			breakFx.play();
 		}
 	}
 	else if(!intro && this.gameProgress === 2){
@@ -115,9 +123,7 @@ gunplayState.prototype.update = function(){
 		if(this.curtainsWait <=0){
 			game.state.start("Radio");
 		}
-
 	}
-
 };
 
 gunplayState.prototype.movePart = function(part){
@@ -129,16 +135,18 @@ gunplayState.prototype.movePart = function(part){
 		part.y = game.input.y;
 		dragging = true;
 		draggedPart = part;
+		dragFx.play();
 	}
 }
 
 gunplayState.prototype.snapPart = function(part, partGoal){
 	if(!part.snapped && part.x <= partGoal.x +part.width/2 && part.x >= partGoal.x -part.width/2 &&
    part.y <= partGoal.y +part.height/2 && part.y >= partGoal.y -part.height/2){
+		
 		part.x = partGoal.x;
 		part.y = partGoal.y;
 		part.snapped = true;
-
+		snapFx.play();
 	}
 }
 

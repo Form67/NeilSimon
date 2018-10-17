@@ -23,6 +23,9 @@ preloadState.prototype.preload = function(){
 	game.load.bitmapFont("carrier_command", "assets/carrier_command.png", "assets/carrier_command.xml");
 	game.load.image("LCurtain", "assets/NewCurtainLeft.png");
 	game.load.image("RCurtain", "assets/NewCurtainRight.png");
+	game.load.audio("gunBreak", "");
+	game.load.audio("gunDrag", "");
+	game.load.audio("gunSnap", "");
 	//help please
 	//game.load.bitmapFont("Typewriter", "assets/carrier_command.png", "assets/carrier_command.xml");
 };
