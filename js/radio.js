@@ -15,7 +15,7 @@ radioState.prototype.create = function() {
 	this.count = 0;
 	this.prompts.inputEnableChildren = true;
 	this.audience = game.add.group();
-	//let typeFx = game.add.audio("typing");
+	let typeFx = game.add.audio("typing");
 
 
 	for(let i = 0; i < 4; i++) {
@@ -195,7 +195,7 @@ radioState.prototype.createGroup = function() {
 	this.prompts.inputEnabled = true;
 };
 radioState.prototype.removeText = function(prompt, pointer) {
-	//typeFx.play();
+	typeFx.play();
 	let temp = 0;
 	for(let i = 0; i < this.prompts.length;i++) {
 		if(prompt === this.prompts.children[i])
