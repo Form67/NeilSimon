@@ -23,7 +23,7 @@ telescopeState.prototype.create = function(){
 	this.board.scale.setTo(2,2);
 	this.person1 = game.add.sprite(50,1880,"person");
 	this.person1.scale.setTo(4,4);
-	let girlFx = game.add.audio("moan");
+	this.girlFx = game.add.audio("moan");
 	// put these where you want souond to play
 	// batFx.play();
 	// 
@@ -46,7 +46,7 @@ telescopeState.prototype.update = function(){
 			}
 		}
 		if(gameTimer <= 0){
-			girlFx.play();
+			this.girlFx.play();
 			this.gameActive = false;
 			this.gameProgress = 3;
 		}
@@ -70,7 +70,7 @@ telescopeState.prototype.update = function(){
 		this.gameProgress =4;
 	}
 	else if(this.gameProgress ===4 && this.Rcurtain.body.position.x <= 0){
-			let text = game.add.text(500, 1500, 'This is a test i cannot read', {font: "72px itc-american-typewriter", fill: "#ffffff", align: "center", wordWrap: true, wordWrapWidth: 1000 });
+			let text = game.add.text(150, 750, "A writer without confidence is like a metaphor without something to compare itself to.\n-Neil Simon", {font: "72px itc-american-typewriter", fill: "#ffffff", align: "center", wordWrap: true, wordWrapWidth: 900 });
 			this.Lcurtain.body.velocity.x = 0;
 			this.Rcurtain.body.velocity.x = 0;
 			this.gameProgress =5;

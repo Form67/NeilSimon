@@ -113,6 +113,8 @@ gunplayState.prototype.update = function(){
 		this.Lcurtain.body.velocity.x = 400;
 		this.Rcurtain.body.velocity.x = -400;
 		this.gameProgress =4;
+		let text = game.add.text(150, 750, "Everyone thinks they can write a play; you just write down what happened to you. But the art of it is drawing from all the moments of your life.\n-Neil Simon", {font: "72px itc-american-typewriter", fill: "#ffffff", align: "center", wordWrap: true, wordWrapWidth: 900 });
+	
 	}
 	else if(this.gameProgress ===4 && this.Rcurtain.body.position.x <= 0){
 			this.Lcurtain.body.velocity.x = 0;
