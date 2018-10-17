@@ -15,12 +15,12 @@ let guard;		// 59x17
 let draggedPart;
 let bg;
 
-let stockGoal = new Phaser.Point(357, 1228-442);
-let stock2Goal = new Phaser.Point(568, 1199-442);
-let barrelGoal = new Phaser.Point(803, 1187-442);
-let sightGoal = new Phaser.Point(571, 1175-442);
-let triggerGoal = new Phaser.Point(501, 1221-442);
-let guardGoal = new Phaser.Point(739, 1193-442);			
+let stockGoal = new Phaser.Point(357, 780);
+let stock2Goal = new Phaser.Point(566, 755);
+let barrelGoal = new Phaser.Point(799, 745);
+let sightGoal = new Phaser.Point(571, 732);
+let triggerGoal = new Phaser.Point(499, 775);
+let guardGoal = new Phaser.Point(732, 748);			
 
 let intro = true;
 let dragging = false;
@@ -68,14 +68,15 @@ gunplayState.prototype.update = function(){
 			this.movePart(sight);
 			this.movePart(trigger);
 			this.movePart(guard);
+			
+			this.snapPart(stock, stockGoal);
+			this.snapPart(stock2, stock2Goal);
+			this.snapPart(barrel, barrelGoal);
+			this.snapPart(sight, sightGoal);
+			this.snapPart(trigger, triggerGoal);
+			this.snapPart(guard, guardGoal);
 		}
 		
-		this.snapPart(stock, stockGoal);
-		this.snapPart(stock2, stock2Goal);
-		this.snapPart(barrel, barrelGoal);
-		this.snapPart(sight, sightGoal);
-		this.snapPart(trigger, triggerGoal);
-		this.snapPart(guard, guardGoal);
 		
 		
 		if(stock.snapped && stock2.snapped && barrel.snapped && sight.snapped && trigger.snapped && guard.snapped){
@@ -123,8 +124,7 @@ gunplayState.prototype.movePart = function(part){
 	if(game.input.x <= (part.x + part.width/2) && game.input.x >= (part.x - part.width/2) &&
 	 game.input.y <= (part.y + part.height/2) && game.input.y >= (part.y - part.height/2) && 
 	 game.input.y <= 1700 && game.input.activePointer.leftButton.isDown && !part.snapped){
-		console.log("x: " + part.x);
-		console.log("y: " + part.y);
+
 		part.x = game.input.x;
 		part.y = game.input.y;
 		dragging = true;
@@ -138,7 +138,7 @@ gunplayState.prototype.snapPart = function(part, partGoal){
 		part.x = partGoal.x;
 		part.y = partGoal.y;
 		part.snapped = true;
-		console.log("snapped");
+
 	}
 }
 
