@@ -13,7 +13,7 @@ preloadState.prototype.preload = function(){
 	game.load.image("sight", "assets/sight.png");
 	game.load.image("barrel", "assets/barrel.png");
 	game.load.image("guard", "assets/guard.png");
-	game.load.image("MainMenu", "assets/MainMenu.png")
+	game.load.image("MainMenu", "assets/MainMenu.png");
 	game.load.image("sign","assets/Sign.png" );
 	game.load.image("gunBG", "assets/GunGame.png");
 	game.load.image("scene","assets/SceneSelect.png");
@@ -30,7 +30,7 @@ preloadState.prototype.preload = function(){
 	game.load.audio("gunBreak", "");
 	game.load.audio("gunDrag", "");
 	game.load.audio("gunSnap", "assets/sounds/gun_snap");
-	game.load.image("end","assets/EndScreen.png")
+	game.load.image("end","assets/EndScreen.png");
 	//help please
 	//game.load.bitmapFont("Typewriter", "assets/carrier_command.png", "assets/carrier_command.xml");
 };
