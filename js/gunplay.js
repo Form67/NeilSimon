@@ -13,13 +13,14 @@ let sight;		// 258x18
 let trigger;	// 121x19
 let guard;		// 59x17	
 let draggedPart;
+let bg;
 
-let stockGoal = new Phaser.Point(357, 1228);
-let stock2Goal = new Phaser.Point(568, 1199);
-let barrelGoal = new Phaser.Point(803, 1187);
-let sightGoal = new Phaser.Point(571, 1175);
-let triggerGoal = new Phaser.Point(501, 1221);
-let guardGoal = new Phaser.Point(739, 1193);			
+let stockGoal = new Phaser.Point(357, 1228-442);
+let stock2Goal = new Phaser.Point(568, 1199-442);
+let barrelGoal = new Phaser.Point(803, 1187-442);
+let sightGoal = new Phaser.Point(571, 1175-442);
+let triggerGoal = new Phaser.Point(501, 1221-442);
+let guardGoal = new Phaser.Point(739, 1193-442);			
 
 let intro = true;
 let dragging = false;
@@ -27,13 +28,19 @@ let dragging = false;
 gunplayState.prototype.create = function(){
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 	
+	bg = game.add.sprite(0, 0, "gunBG");
+	bg.scale.setTo(4,3);
+	
 	// gun
-	gun = game.add.sprite(game.world.centerX - 280, game.world.centerY - 48, "gun");
+	gun = game.add.sprite(game.world.centerX - 280, game.world.centerY - 400, "gun");
 	game.physics.arcade.enable(gun);
+	
 	this.Lcurtain = game.add.sprite(0,0,"LCurtain");
 	game.physics.enable(this.Lcurtain, Phaser.Physics.ARCADE);
 	this.Rcurtain = game.add.sprite(0,0,"RCurtain");
 	game.physics.enable(this.Rcurtain, Phaser.Physics.ARCADE);
+	
+	
 	
 };
 gunplayState.prototype.update = function(){
@@ -139,7 +146,7 @@ gunplayState.prototype.snapPart = function(part, partGoal){
 
 gunplayState.prototype.spawnParts = function(){
 	
-	gunShadow = game.add.sprite(game.world.centerX - 280, game.world.centerY - 48, "goal");
+	gunShadow = game.add.sprite(game.world.centerX - 280, game.world.centerY - 500, "goal");
 
 	
 	stock = game.add.sprite(game.world.centerX + 400, 1700, 'stock');
