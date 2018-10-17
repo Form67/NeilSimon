@@ -1,4 +1,6 @@
 let radioState =function() {
+	this.gameProgress = 0;
+	this.curtainsWait = 5;
 	this.score = 0;
 };
 
@@ -17,6 +19,7 @@ radioState.prototype.create = function() {
 	this.count = 0;
 	this.answers = game.add.group();
 	this.prompts.inputEnableChildren = true;
+
 
 	for(let i = 0; i < 4; i++) {
 		let x = 0;
@@ -41,11 +44,18 @@ radioState.prototype.create = function() {
 		this.prompts.add(test);
 	}
 	this.prompts.inputEnabled = true;
-
+	this.Lcurtain = game.add.sprite(0,0,"LCurtain");
+	game.physics.enable(this.Lcurtain, Phaser.Physics.ARCADE);
+	this.Rcurtain = game.add.sprite(0,0,"RCurtain");
+	game.physics.enable(this.Rcurtain, Phaser.Physics.ARCADE);
+	this.audienceFloor = game.add.sprite(0,0,"audienceFloor")
+	this.board = game.add.sprite(200,1800, "easel3");
+	this.board.scale.setTo(2,2);
 };
 
 
 radioState.prototype.update = function() {
+	if (this.gameProgress === 2){
 	//this.text1.x = Math.floor(this.sprite.x + this.sprite.width/2);
 	//this.text1.y = Math.floor(this.sprite.y + this.sprite.height / 2);
 	//game.input.onDown.addOnce(this.removeText, this);
@@ -53,6 +63,40 @@ radioState.prototype.update = function() {
 	//if(this.count === 1) {
 		//createGroup2();
 	//}
+	}
+	else if (this.gameProgress ===0){
+		this.Lcurtain.body.velocity.x = -400;
+		this.Rcurtain.body.velocity.x = 400;
+		this.gameProgress =1;
+	}
+	else if (this.gameProgress ===1){
+		if(+this.Rcurtain.body.position.x >= +650.0){
+			this.Lcurtain.body.velocity.x = 0;
+			this.Rcurtain.body.velocity.x = 0;
+			this.gameProgress =2;
+			this.gameActive = true;
+		}
+	}
+	else if (this.gameProgress ===3){
+		this.Lcurtain = game.add.sprite(-650,0,"LCurtain");
+		game.physics.enable(this.Lcurtain, Phaser.Physics.ARCADE);
+		this.Rcurtain = game.add.sprite(650,0,"RCurtain");
+		game.physics.enable(this.Rcurtain, Phaser.Physics.ARCADE);
+		this.Lcurtain.body.velocity.x = 400;
+		this.Rcurtain.body.velocity.x = -400;
+		this.gameProgress =4;
+	}
+	else if(this.gameProgress ===4 && this.Rcurtain.body.position.x <= 0){
+			this.Lcurtain.body.velocity.x = 0;
+			this.Rcurtain.body.velocity.x = 0;
+			this.gameProgress = 5;
+	}
+	else if(this.gameProgress ===5){
+		this.curtainsWait -= game.time.physicsElapsed;
+		if(this.curtainsWait <=0){
+			game.state.start("end");
+		}
+	}
 };
 radioState.prototype.removeText = function(prompt, pointer) {
 	console.log(prompt.x);
