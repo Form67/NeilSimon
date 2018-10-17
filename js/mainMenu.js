@@ -1,5 +1,5 @@
 let mainMenuState =function() {
-	this.gameTimer = 3;
+	this.gameTimer = 7;
 	this.mode = 0;
 };
 mainMenuState.prototype.create = function(){

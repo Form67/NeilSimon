@@ -22,7 +22,8 @@ preloadState.prototype.preload = function(){
 	game.load.image("easelBlank", "assets/Easel.png");
 	game.load.image("easel1", "assets/BrightonEasel.png");
 	game.load.image("easel2", "assets/BiloxiEasel.png");
-	game.load.image("easel3", "assets/BroadwayEasel.png")
+	game.load.image("easel3", "assets/BroadwayEasel.png");
+	game.load.image("person", "assets/person.png");
 	game.load.image("audienceFloor", "assets/AudienceBackground.png");
 	game.load.bitmapFont("carrier_command", "assets/carrier_command.png", "assets/carrier_command.xml");
 	game.load.image("LCurtain", "assets/NewCurtainLeft.png");
@@ -38,7 +39,7 @@ preloadState.prototype.preload = function(){
 	//game.load.bitmapFont("Typewriter", "assets/carrier_command.png", "assets/carrier_command.xml");
 };
 preloadState.prototype.create = function(){
-	game.state.start("Radio");
+	game.state.start("MainMenu");
 };
 
 preloadState.prototype.update = function(){
