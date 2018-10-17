@@ -23,7 +23,7 @@ preloadState.prototype.preload = function(){
 	//game.load.bitmapFont("Typewriter", "assets/carrier_command.png", "assets/carrier_command.xml");
 };
 preloadState.prototype.create = function(){
-	game.state.start("Gunplay");
+	game.state.start("Telescope");
 };
 preloadState.prototype.update = function(){
 

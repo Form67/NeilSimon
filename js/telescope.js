@@ -2,6 +2,7 @@ let telescopeState  =function() {
 	this.gameProgress = 0;
 	this.gameActive = false;
 	this.gameTimer = 2.7;
+	this.curtainsWait = 5;
 };
 
 telescopeState.prototype.create = function(){
@@ -62,6 +63,15 @@ telescopeState.prototype.update = function(){
 	else if(this.gameProgress ===4 && this.Rcurtain.body.position.x <= 0){
 			this.Lcurtain.body.velocity.x = 0;
 			this.Rcurtain.body.velocity.x = 0;
+			this.gameProgress =5;
+			
+	}
+	else if(this.gameProgress ===5){
+		this.curtainsWait -= game.time.physicsElapsed;
+		if(this.curtainsWait <=0){
+			game.state.start("Gunplay");
+		}
+
 	}
 
 	
