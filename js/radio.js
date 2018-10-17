@@ -1,6 +1,7 @@
 let radioState =function() {
 	this.gameProgress = 0;
 	this.curtainsWait = 5;
+	this.timerWait = 3;
 	this.score = 0;
 };
 
@@ -83,6 +84,7 @@ radioState.prototype.update = function() {
 		}
 	}
 	else if (this.gameProgress ===3){
+		if (this.timerWait < 0){
 		this.Lcurtain = game.add.sprite(-650,0,"LCurtain");
 		game.physics.enable(this.Lcurtain, Phaser.Physics.ARCADE);
 		this.Rcurtain = game.add.sprite(650,0,"RCurtain");
@@ -90,6 +92,10 @@ radioState.prototype.update = function() {
 		this.Lcurtain.body.velocity.x = 400;
 		this.Rcurtain.body.velocity.x = -400;
 		this.gameProgress =4;
+	}
+	else{
+		this.timerWait -= game.time.physicsElapsed;
+	}
 	}
 	else if(this.gameProgress ===4 && this.Rcurtain.body.position.x <= 0){
 			this.Lcurtain.body.velocity.x = 0;
