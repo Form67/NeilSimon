@@ -42,8 +42,9 @@ gunplayState.prototype.create = function(){
 	game.physics.enable(this.Lcurtain, Phaser.Physics.ARCADE);
 	this.Rcurtain = game.add.sprite(0,0,"RCurtain");
 	game.physics.enable(this.Rcurtain, Phaser.Physics.ARCADE);
-	this.audienceFloor = game.add.sprite(0,0,"audienceFloor")
-	
+	this.audienceFloor = game.add.sprite(0,0,"audienceFloor");
+	this.board = game.add.sprite(200,1800, "easel2");
+	this.board.scale.setTo(2,2);
 	snapFx = game.add.audio("gunSnap");
 	breakFx = game.add.audio("gunBreak");
 	dragFx = game.add.audio("gunDrag");

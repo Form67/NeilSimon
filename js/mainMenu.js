@@ -7,6 +7,8 @@ mainMenuState.prototype.create = function(){
 	this.sign = game.add.sprite(0,-1000, "sign");
 	game.physics.enable(this.sign, Phaser.Physics.ARCADE);
 	this.audienceFloor = game.add.sprite(0,0,"audienceFloor");
+	this.board = game.add.sprite(200,1800, "easelBlank");
+	this.board.scale.setTo(2,2);
 };
 
 mainMenuState.prototype.update = function(){

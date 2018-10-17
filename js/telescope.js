@@ -19,6 +19,8 @@ telescopeState.prototype.create = function(){
 	this.Rcurtain = game.add.sprite(0,0,"RCurtain");
 	game.physics.enable(this.Rcurtain, Phaser.Physics.ARCADE);
 	this.audienceFloor = game.add.sprite(0,0,"audienceFloor")
+	this.board = game.add.sprite(200,1800, "easel1");
+	this.board.scale.setTo(2,2);
 };
 
 

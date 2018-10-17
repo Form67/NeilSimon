@@ -19,6 +19,10 @@ preloadState.prototype.preload = function(){
 	game.load.image("scene","assets/SceneSelect.png");
 	game.load.image("Paper", "assets/Paper.png");
 	game.load.image("test", "assets/test.png");
+	game.load.image("easelBlank", "assets/Easel.png");
+	game.load.image("easel1", "assets/BrightonEasel.png");
+	game.load.image("easel2", "assets/BiloxiEasel.png");
+	game.load.image("easel3", "assets/BroadwayEasel.png")
 	game.load.image("audienceFloor", "assets/AudienceBackground.png");
 	game.load.bitmapFont("carrier_command", "assets/carrier_command.png", "assets/carrier_command.xml");
 	game.load.image("LCurtain", "assets/NewCurtainLeft.png");
