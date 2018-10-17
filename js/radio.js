@@ -10,18 +10,12 @@ radioState.prototype.create = function() {
 	
 	this.promptz = game.add.text(100,100,'', {font: "72px itc-american-typewriter", fill: "#ff0044", align: "center", wordWrap: true, wordWrapWidth: 1000 });
 	this.promptz.inputEnabled = true;
-	//this.prompt.input.enableDrag();
-	//this.prompt.input.pixelPerfectClick = true;
 
-	//this.answer1.inputEnabled = true;
-	//this.answer1.input.enableDrag();
-	
 	this.prompts = game.add.group();
 	this.count = 0;
-	this.answers = game.add.group();
 	this.prompts.inputEnableChildren = true;
-	
-	let typeFx = game.add.audio("typing");
+	this.audience = game.add.group();
+	//let typeFx = game.add.audio("typing");
 
 
 	for(let i = 0; i < 4; i++) {
@@ -60,15 +54,23 @@ radioState.prototype.create = function() {
 
 radioState.prototype.update = function() {
 	if (this.gameProgress === 2){
-		//this.text1.x = Math.floor(this.sprite.x + this.sprite.width/2);
-		//this.text1.y = Math.floor(this.sprite.y + this.sprite.height / 2);
-		//game.input.onDown.addOnce(this.removeText, this);
 		this.prompts.onChildInputDown.add(this.removeText, this);
-		//if(this.count === 1) {
-			//createGroup2();
-		//}
-		//this.prompts.onChildInputDown.add(this.removeText, this);
-		
+		if(this.score >= 5) {
+			this.score -= 5;
+			let divider = Math.random();
+			let x = 0;
+			let y = 0;
+			if(divider >= 0.5) {
+				x = Math.random() * 100 + 800;
+				y = Math.random() * 350 + 1800;
+			}
+			else {
+				x = Math.random() * 100;
+				y = Math.random() * 350 + 1800;
+			}
+			this.person = game.add.sprite(x,y,"person");
+			this.person.scale.setTo(4,4);
+		} 
 	}
 	else if (this.gameProgress ===0){
 		this.Lcurtain.body.velocity.x = -400;
@@ -193,7 +195,7 @@ radioState.prototype.createGroup = function() {
 	this.prompts.inputEnabled = true;
 };
 radioState.prototype.removeText = function(prompt, pointer) {
-	typeFx.play();
+	//typeFx.play();
 	let temp = 0;
 	for(let i = 0; i < this.prompts.length;i++) {
 		if(prompt === this.prompts.children[i])
