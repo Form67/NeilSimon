@@ -92,7 +92,7 @@ radioState.prototype.update = function() {
 		this.Lcurtain.body.velocity.x = 400;
 		this.Rcurtain.body.velocity.x = -400;
 		this.gameProgress =4;
-	}
+		}
 	else{
 		this.timerWait -= game.time.physicsElapsed;
 	}
