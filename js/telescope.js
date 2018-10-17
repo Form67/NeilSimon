@@ -21,6 +21,12 @@ telescopeState.prototype.create = function(){
 	this.audienceFloor = game.add.sprite(0,0,"audienceFloor")
 	this.board = game.add.sprite(200,1800, "easel1");
 	this.board.scale.setTo(2,2);
+	
+	let batFx = game.add.audio("bat");
+	let girlFx = game.add.audio("moan");
+	// put these where you want souond to play
+	// batFx.play();
+	// girlFx.play();
 };
 
 

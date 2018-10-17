@@ -19,6 +19,8 @@ radioState.prototype.create = function() {
 	this.count = 0;
 	this.answers = game.add.group();
 	this.prompts.inputEnableChildren = true;
+	
+	let typeFx = game.add.audio("typing");
 
 
 	for(let i = 0; i < 4; i++) {
@@ -185,7 +187,7 @@ radioState.prototype.createGroup = function() {
 	this.prompts.inputEnabled = true;
 };
 radioState.prototype.removeText = function(prompt, pointer) {
-	//HERE IS WHERE YOU CLICK ============================================================================================================================================
+	typeFx.play();
 	let temp = 0;
 	for(let i = 0; i < this.prompts.length;i++) {
 		if(prompt === this.prompts.children[i])
