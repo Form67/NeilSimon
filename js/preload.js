@@ -13,10 +13,13 @@ preloadState.prototype.preload = function(){
 	game.load.image("sight", "assets/sight.png");
 	game.load.image("barrel", "assets/barrel.png");
 	game.load.image("guard", "assets/guard.png");
+	game.load.image("MainMenu", "assets/MainMenu.png")
+	game.load.image("sign","assets/Sign.png" );
 	game.load.image("gunBG", "assets/GunGame.png");
 	
 	game.load.image("Paper", "assets/Paper.png");
 	game.load.image("test", "assets/test.png");
+	game.load.image("audienceFloor", "assets/AudienceBackground.png");
 	game.load.bitmapFont("carrier_command", "assets/carrier_command.png", "assets/carrier_command.xml");
 	game.load.image("LCurtain", "assets/NewCurtainLeft.png");
 	game.load.image("RCurtain", "assets/NewCurtainRight.png");
@@ -24,8 +27,9 @@ preloadState.prototype.preload = function(){
 	//game.load.bitmapFont("Typewriter", "assets/carrier_command.png", "assets/carrier_command.xml");
 };
 preloadState.prototype.create = function(){
-	game.state.start("Telescope");
+	game.state.start("MainMenu");
 };
+
 preloadState.prototype.update = function(){
 
 };

@@ -39,9 +39,7 @@ gunplayState.prototype.create = function(){
 	game.physics.enable(this.Lcurtain, Phaser.Physics.ARCADE);
 	this.Rcurtain = game.add.sprite(0,0,"RCurtain");
 	game.physics.enable(this.Rcurtain, Phaser.Physics.ARCADE);
-	
-	
-	
+	this.audienceFloor = game.add.sprite(0,0,"audienceFloor")
 };
 gunplayState.prototype.update = function(){
 	
