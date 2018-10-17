@@ -13,6 +13,7 @@ preloadState.prototype.preload = function(){
 	game.load.image("sight", "assets/sight.png");
 	game.load.image("barrel", "assets/barrel.png");
 	game.load.image("guard", "assets/guard.png");
+	game.load.image("gunBG", "assets/GunGame.png");
 	
 	game.load.image("Paper", "assets/Paper.png");
 	game.load.image("test", "assets/test.png");
