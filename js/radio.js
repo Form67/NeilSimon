@@ -97,6 +97,36 @@ radioState.prototype.update = function() {
 			game.state.start("end");
 		}
 	}
+	this.prompts.onChildInputDown.add(this.removeText, this);
+	if(this.count === 1) {
+		console.log("this is happening");
+		this.createGroup2();
+	}
+};
+radioState.prototype.createGroup2 = function() {
+	for(let i = 0; i < 4; i++) {
+		let x = 0;
+		let y = 0;
+		if(i === 0) {
+			x = 200;
+			y = 700;
+		}
+		if(i === 1) {
+			x = 600;
+			y = 700;
+		}
+		if(i === 2) {
+			x = 200;
+			y = 900;
+		}
+		if(i === 3) {
+			x = 600;
+			y = 900;
+		}
+		let test = game.add.text(x, y, 'testyboi', {font: "72px itc-american-typewriter", fill: "#ff0044", align: "center" });
+		this.prompts.add(test);
+	}
+	this.prompts.inputEnabled = true;
 };
 radioState.prototype.removeText = function(prompt, pointer) {
 	console.log(prompt.x);
