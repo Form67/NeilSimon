@@ -32,7 +32,7 @@ preloadState.prototype.preload = function(){
 	game.load.audio("gunSnap", "assets/sounds/gun_snap");
 	game.load.audio("typing", "");
 	game.load.audio("bat", "");
-	game.load.audio("moan", "");
+	game.load.audio("moan", "assets/sounds/moan");
 	game.load.image("end","assets/EndScreen.png");
 	//help please
 	//game.load.bitmapFont("Typewriter", "assets/carrier_command.png", "assets/carrier_command.xml");
