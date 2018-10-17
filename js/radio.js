@@ -110,7 +110,7 @@ radioState.prototype.createGroup = function() {
 		let tempPrompt = "";
 		if(i === 0) {
 			x = 100;
-			y = 300 * (this.count + 1.5);
+			y = 200 * (this.count + 1.5) + 50;
 			if(this.count === 0)
 			tempText = "Brighton Beach";
 			if(this.count === 1)
@@ -123,7 +123,7 @@ radioState.prototype.createGroup = function() {
 		if(i === 1) {
 			tempPrompt = "A writer without -- is like a metaphor without something to compare itself to.";
 			x = 600;
-			y = 300 * (this.count + 1.5);
+			y = 200 * (this.count + 1.5) + 50;
 			if(this.count === 0)
 			tempText = "New York";
 			if(this.count === 1)
@@ -135,7 +135,7 @@ radioState.prototype.createGroup = function() {
 		}
 		if(i === 2) {
 			x = 100;
-			y = 300 * (this.count + 1.5) + 200;
+			y = 200 * (this.count + 1.5) + 250;
 			if(this.count === 0)
 			tempText = "America";
 			if(this.count === 1)
@@ -147,7 +147,7 @@ radioState.prototype.createGroup = function() {
 		}
 		if(i === 3) {
 			x = 600;
-			y = 300 * (this.count + 1.5) + 200;
+			y = 200 * (this.count + 1.5) + 250;
 			if(this.count === 0)
 			tempText = "Los Angeles";
 			if(this.count === 1)
@@ -161,9 +161,12 @@ radioState.prototype.createGroup = function() {
 		
 		//let test = game.add.text(x, y, 'testyboi', {font: "72px itc-american-typewriter", fill: "#ff0044", align: "center" });
 		this.prompts.children[i].x = x;
+		if(this.count === 3)
+			y += 200;
 		this.prompts.children[i].y = y;
 		this.prompts.children[i].text = tempText;
 	}
+	
 	if(this.count === 0)
 		tempPrompt = "I grew up in -";
 	if(this.count === 1)
@@ -172,21 +175,25 @@ radioState.prototype.createGroup = function() {
 		tempPrompt = "I went to boot camp in -";
 	if(this.count === 3)
 		tempPrompt = "Everyone thinks they can write a play; you just write down what happened to you. But the art of it is drawing from -";
+	if(this.count >= 4) {
+		gameProgress = 3;
+		this.prompts.destroy();
+		return;
+	}
 	this.promptz.text += tempPrompt;
 
 	this.prompts.inputEnabled = true;
 };
 radioState.prototype.removeText = function(prompt, pointer) {
-	console.log(prompt.x);
-	console.log(prompt.y);
-	console.log(pointer.x);
-	console.log(pointer.y);
+	//HERE IS WHERE YOU CLICK ============================================================================================================================================
 	let temp = 0;
 	for(let i = 0; i < this.prompts.length;i++) {
 		if(prompt === this.prompts.children[i])
 			temp = i;
 	}
+	
 	this.promptz.text += " " + prompt.text + "\n";
+
 	if(this.count === 0) {
 		if(temp === 0)
 			this.score += 10;
@@ -226,13 +233,14 @@ radioState.prototype.removeText = function(prompt, pointer) {
 			this.score += 0;
 		if(temp === 3)
 			this.score += 10;
+		//SAM THIS IS WHERE I NEED THE WAIT =================================================================
+		this.gameProgress = 3;
+
+		
 	}
 	console.log(this.score);
 	this.count++;
-	if(this.count === 4) {
-		gameProgress = 3;
-		return;
-	}
+	
 	this.createGroup();
-
+	
 };
